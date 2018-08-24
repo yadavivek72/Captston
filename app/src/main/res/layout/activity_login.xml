@@ -37,7 +37,6 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="10dp"
                         android:padding="8dp"
-                        android:onClick="onRadioButtonClicked"
                         android:text="Recruiter"
                         android:textColor="@android:color/holo_blue_dark" />
 
@@ -47,7 +46,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="60dp"
                         android:layout_marginTop="10dp"
-                        android:onClick="onRadioButtonClicked"
                         android:padding="8dp"
                         android:text="Seeker"
                         android:textColor="@android:color/holo_blue_dark" />
@@ -116,7 +114,8 @@
             <Button
                 android:id="@+id/sign"
                 style="@style/ebutton_style"
-                android:text="Sign up" />
+                android:text="Sign up"
+                android:onClick="onSignUp"/>
 
             <TextView
                 android:id="@+id/textView"
