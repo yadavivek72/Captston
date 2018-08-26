@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Login" />
         <activity android:name=".Recruiter" />
-        <activity android:name=".Seeker"></activity>
+        <activity android:name=".Seeker" />
+        <activity android:name=".SignUp"></activity>
     </application>
 
 </manifest>

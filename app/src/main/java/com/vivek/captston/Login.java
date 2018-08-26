@@ -13,6 +13,8 @@ public class Login extends AppCompatActivity {
 
     public void onSignUp(View view)
     {
+        Intent iSignUp=new Intent(this,SignUp.class);
+        startActivity(iSignUp);
 
     }
 

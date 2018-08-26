@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "838960466734",
+    "firebase_url": "https://authentication-ac634.firebaseio.com",
+    "project_id": "authentication-ac634",
+    "storage_bucket": "authentication-ac634.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838960466734:android:ddbcc1d2da9cd1ce",
+        "android_client_info": {
+          "package_name": "com.vivek.captston"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838960466734-ut56pisc987j0h0t3cceon8d52crqm1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2GGOPxPpGJesAV4P1FYuax3ak79-It24"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
