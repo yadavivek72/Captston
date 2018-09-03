@@ -45,6 +45,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener  {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplication(),"user Registered",Toast.LENGTH_SHORT).show();
+                    Intent iSignup=new Intent(SignUp.this,Login.class);
                 }
                 else{
                     Toast.makeText(getApplication(),"Registration failed",Toast.LENGTH_SHORT).show();

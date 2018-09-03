@@ -63,7 +63,7 @@
                 app:srcCompat="@drawable/logo" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -83,6 +83,7 @@
                 android:layout_height="1dp"></View>
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -107,12 +108,12 @@
                 android:text="Remember me" />
 
             <Button
-                android:id="@+id/blogin"
+                android:id="@+id/buttonlogin"
                 style="@style/ebutton_style"
                 android:text="LOGIN" />
 
             <Button
-                android:id="@+id/sign"
+                android:id="@+id/buttonsignup"
                 style="@style/ebutton_style"
                 android:text="Sign up"
                 android:onClick="onSignUp"/>
