@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class Login extends Activity implements View.OnClickListener {
     Button login,signUp;
     String Email;
     String password;
+    TextView forgetpassword;
 
 
 
@@ -41,6 +43,7 @@ public class Login extends Activity implements View.OnClickListener {
         // progressBar=findViewById(R.id.progressBar);
         findViewById(R.id.buttonsignup).setOnClickListener(this);
         findViewById(R.id.buttonlogin).setOnClickListener(this);
+        findViewById(R.id.forget_password_textView).setOnClickListener(this);
         mAuth=FirebaseAuth.getInstance();
         }
 
@@ -74,7 +77,7 @@ public class Login extends Activity implements View.OnClickListener {
     }
 
 private void sendEmailVerification(){
-        
+
 }
 
     private boolean validation(){
@@ -117,7 +120,11 @@ private void sendEmailVerification(){
                 Intent intent=new Intent(this,SignUp.class);
                 startActivity(intent);
                 break;
-            default:
+            case R.id.forget_password_textView:
+                Intent intent1 =new Intent(this,ForgotPasswordModule.class);
+                startActivity(intent1);
+                break;
+                default:
                 break;
 
         }
