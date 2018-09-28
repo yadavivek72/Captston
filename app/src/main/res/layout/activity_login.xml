@@ -74,9 +74,7 @@
                 android:hint="username"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:padding="8dp"
-
-                />
+                android:padding="8dp" />
 
             <View
                 android:layout_width="match_parent"

@@ -73,6 +73,9 @@ public class Login extends Activity implements View.OnClickListener {
 
     }
 
+private void sendEmailVerification(){
+        
+}
 
     private boolean validation(){
         boolean valid =true;
