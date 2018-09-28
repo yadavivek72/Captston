@@ -1,9 +1,11 @@
 package com.vivek.captston;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,23 +25,23 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
- public class SignUp extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+ public class SignUp extends Activity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
-    String Email, id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City, Gender,Password
-            ,  Profession,  Type,  Name,  Alternate_Contact_Number;
+    String Email="", id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City, Gender="",Password=""
+            ,Confirm_password="",  Profession="",  Type="",  Name="",  Alternate_Contact_Number;
 
-
+    private String TAG=Email;
     EditText editTextEmail,editTextContact_No,editTextAadhar_No,editTextStreet,editTextPassword,editTextConfirmPassword,
     editTextPincode,editTextState,editTextCity,editTextGender,editTextPreofession,editTextName,editTextAlternate_contact_No;
-
+    Button button_next;
 
    // EditText signupname,signuppass,signupmobile,signupemail,signupadd;
 
     Spinner spinner_gender,spinner_profession;
-    Button button_next;
+    //Button button_next;
     RadioButton radioButtonseeker,radioButtonrecruiter;
-    private FirebaseAuth mAuth;
-     private FirebaseDatabase database;
+    public FirebaseAuth mAuth;
+     public FirebaseDatabase database;
      ArrayList<User> Userlist;
     public void onRadioButtonClicked(View view)
     {
@@ -85,10 +87,10 @@ import java.util.ArrayList;
         editTextPincode=(EditText)findViewById(R.id.editTextPincode);
         editTextContact_No=(EditText)findViewById(R.id.editTextContact_No);
         editTextAlternate_contact_No=(EditText)findViewById(R.id.editTextAlternate_No);
-        editTextPreofession=(EditText)findViewById(R.id.editTextProfession);
+        //editTextPreofession=(EditText)findViewById(R.id.editTextProfession);
         radioButtonrecruiter=(RadioButton)findViewById(R.id.Radio_Btn_recruiter);
         radioButtonseeker=(RadioButton)findViewById(R.id.Radio_btn_seeker);
-
+        button_next=(Button)findViewById(R.id.button_next);
 
         findViewById(R.id.button_next).setOnClickListener(this);
         spinner_gender  = (Spinner)findViewById(R.id.spinner_gender);
@@ -155,19 +157,34 @@ import java.util.ArrayList;
 
         Email =editTextEmail.getText().toString().trim();
         Password=editTextPassword.getText().toString().trim();
+
+        Contact_Number=editTextContact_No.getText().toString().trim();
+        Aadhar_Number=editTextAadhar_No.getText().toString().trim();
+        Alternate_Contact_Number=editTextAlternate_contact_No.getText().toString().trim();
+        State=editTextState.getText().toString().trim();
+        Street_No=editTextStreet.getText().toString().trim();
+        City=editTextCity.getText().toString().trim();
+        Pincode=editTextPincode.getText().toString().trim();
+        Confirm_password=editTextConfirmPassword.getText().toString().trim();
         if(!validation()){
+          Toast.makeText(getApplication(),"Reached till validation",Toast.LENGTH_LONG).show();
             return;
         }
-
+        Toast.makeText(getApplication(),"outside",Toast.LENGTH_LONG).show();
         mAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
             @Override
+
             public void onComplete(@NonNull Task<AuthResult> task) {
+              Toast.makeText(getApplicationContext(),"Inside",Toast.LENGTH_LONG).show();
+              Log.d(TAG,Email);
                 if(task.isSuccessful()){
                     Toast.makeText(getApplication(),"user Registered",Toast.LENGTH_SHORT).show();
-                    Intent iSignup=new Intent(SignUp.this,Login.class);
+                //    Intent iSignup=new Intent(SignUp.this,Login.class);
 
                     id =FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    DatabaseReference mref=database.getReference().child("User");
+                    database=FirebaseDatabase.getInstance();
+                    DatabaseReference mref=database.getReference();
                    Userlist.add(new User(Email, id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City,
                            Gender,  Profession,  Type,  Name,  Alternate_Contact_Number));
 
@@ -201,12 +218,13 @@ import java.util.ArrayList;
             editTextPassword.requestFocus();
             valid=false;
         }
-        if(Password!=editTextConfirmPassword.getText().toString())
+        /*if(Password.qual(Confirm_password))
         {
             editTextPassword.setError("Password do not match");
             editTextPassword.requestFocus();
             editTextConfirmPassword.requestFocus();
-        }
+            valid =false;
+        }*/
         if(Password.length()<6){
             editTextPassword.setError("Minimum password length is 6");
             editTextPassword.requestFocus();
@@ -247,6 +265,11 @@ import java.util.ArrayList;
             editTextStreet.requestFocus();
             valid=false;
         }
+        if(City.isEmpty()){
+            editTextCity.setError("Enter city");
+            editTextCity.requestFocus();
+
+        }
 
         return valid; }
 
@@ -255,6 +278,8 @@ import java.util.ArrayList;
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button_next:
+
+                Toast.makeText(getApplication(),"Shit is happening",Toast.LENGTH_LONG).show();
                 createuser();
                 break;
             /*case R.id.textViewLogin:

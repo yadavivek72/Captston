@@ -37,7 +37,7 @@
         android:ems="10"
         android:drawablePadding="12dp"/>
 
-            <EditText
+   <!--         <EditText
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:maxLines="1"
                 android:hint="Profession"
                 android:ems="10"
-                android:drawablePadding="12dp"/>
+                android:drawablePadding="12dp"/>    -->
 
 
 
@@ -300,7 +300,7 @@
         android:layout_width="wrap_content"
         android:id="@+id/button_next"
         android:layout_gravity="center"
-        android:text="Next"
+        android:text="Signup"
         android:onClick="onNext"/>
 
 </LinearLayout>

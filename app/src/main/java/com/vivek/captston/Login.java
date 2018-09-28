@@ -1,8 +1,9 @@
 package com.vivek.captston;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class Login extends Activity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     EditText editTextEmail,editTextPassword;
@@ -121,10 +122,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
 
-        int id=v.getId();
-        if(id==R.id.buttonlogin){
+        //int id=v.getId();
+        ///if(id==R.id.buttonlogin){
 
-        }
+        //}
 
     }
 
