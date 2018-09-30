@@ -1,9 +1,10 @@
 package com.vivek.captston;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Recruiter extends AppCompatActivity {
+public class Recruiter extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

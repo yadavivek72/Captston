@@ -1,8 +1,9 @@
 package com.vivek.captston;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class Login extends Activity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     EditText editTextEmail,editTextPassword;
@@ -27,6 +29,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button login,signUp;
     String Email;
     String password;
+    TextView forgetpassword;
 
 
 
@@ -40,6 +43,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         // progressBar=findViewById(R.id.progressBar);
         findViewById(R.id.buttonsignup).setOnClickListener(this);
         findViewById(R.id.buttonlogin).setOnClickListener(this);
+        findViewById(R.id.forget_password_textView).setOnClickListener(this);
         mAuth=FirebaseAuth.getInstance();
         }
 
@@ -72,6 +76,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+private void sendEmailVerification(){
+
+}
 
     private boolean validation(){
         boolean valid =true;
@@ -113,7 +120,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Intent intent=new Intent(this,SignUp.class);
                 startActivity(intent);
                 break;
-            default:
+            case R.id.forget_password_textView:
+                Intent intent1 =new Intent(this,ForgotPasswordModule.class);
+                startActivity(intent1);
+                break;
+                default:
                 break;
 
         }
@@ -121,10 +132,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
 
-        int id=v.getId();
-        if(id==R.id.buttonlogin){
+        //int id=v.getId();
+        ///if(id==R.id.buttonlogin){
 
-        }
+        //}
 
     }
 
