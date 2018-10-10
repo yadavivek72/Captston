@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Captston</string>
+    <string name="open">Capstone</string>
+    <string name="close">Capstone</string>
     <string name="title_activity_login">Login</string>
+
 </resources>

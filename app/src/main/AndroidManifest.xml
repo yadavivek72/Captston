@@ -3,7 +3,7 @@
     package="com.vivek.captston">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +22,11 @@
         <activity android:name=".Recruiter" />
         <activity android:name=".Seeker" />
         <activity android:name=".SignUp" />
-        <activity android:name=".ForgotPasswordModule"></activity>
+        <activity android:name=".ForgotPasswordModule" />
+        <activity android:name=".Recruiter_Profile" />
+        <activity android:name=".EditRecruiterProfileAcitvity" />
+        <activity android:name=".Seeker_View_Profile" />
+        <activity android:name=".Seeker_Edit_Profile"></activity>
     </application>
 
 </manifest>

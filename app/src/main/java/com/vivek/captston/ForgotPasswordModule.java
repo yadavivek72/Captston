@@ -1,6 +1,7 @@
 package com.vivek.captston;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Patterns;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,35 +20,40 @@ public class ForgotPasswordModule extends Activity {
 private String Email;
     EditText editTextEmail;
     private FirebaseAuth mAuth;
+    ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_module);
 
-
+      pd=new ProgressDialog(this);
 
    mAuth=FirebaseAuth.getInstance();
 
         }
 
-        private void sendEmailVerification(String Email){
+        private void PasswordReset(String Email){
+       pd.setMessage("Sending");
+       pd.show();
 
 
+        findViewById(R.id.button_forgotpassword);
 
-//        findViewById(R.id.button_forgotpassword);
-       final FirebaseUser user=mAuth.getCurrentUser();
-       user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+       mAuth.sendPasswordResetEmail(Email).addOnCompleteListener(new OnCompleteListener<Void>() {
            @Override
            public void onComplete(@NonNull Task<Void> task) {
-               findViewById(R.id.editTextForgotPassword).setEnabled(true);
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"Verification Email has been sent",Toast.LENGTH_LONG).show();
 
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Send Email verification has failed",Toast.LENGTH_LONG).show();
-                }
+               if(task.isSuccessful()){
+                   pd.dismiss();
+                   Toast.makeText(getApplicationContext(),"Reset Password intruction has sent to your Registered mail id",Toast.LENGTH_SHORT).show();
+               }
+
+           }
+       }).addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception e) {
+          pd.dismiss();
+          Toast.makeText(getApplicationContext(),"Verification failed Invalid mail id try again",Toast.LENGTH_SHORT).show();
            }
        });
 
@@ -73,12 +80,12 @@ private String Email;
 
         return valid;
     }
-    public void verify(View view){
+    public void Reset(View view){
         editTextEmail=(EditText) findViewById(R.id.editTextForgotPassword);
         String Email =editTextEmail.getText().toString();
         if(validation(Email))
         {
-            sendEmailVerification(Email);
+            PasswordReset(Email);
         }
     }
 

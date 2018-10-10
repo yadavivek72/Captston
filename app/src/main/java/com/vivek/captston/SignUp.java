@@ -1,6 +1,7 @@
 package com.vivek.captston;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 //import android.support.v7.app.AppCompatActivity;
@@ -30,18 +31,24 @@ import java.util.ArrayList;
     String Email="", id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City, Gender="",Password=""
             ,Confirm_password="",  Profession="",  Type="",  Name="",  Alternate_Contact_Number;
 
-    private String TAG=Email;
+    private String TAG="abcdefg";
     EditText editTextEmail,editTextContact_No,editTextAadhar_No,editTextStreet,editTextPassword,editTextConfirmPassword,
     editTextPincode,editTextState,editTextCity,editTextGender,editTextPreofession,editTextName,editTextAlternate_contact_No;
     Button button_next;
 
+    ProgressDialog pd;
    // EditText signupname,signuppass,signupmobile,signupemail,signupadd;
 
     Spinner spinner_gender,spinner_profession;
     //Button button_next;
     RadioButton radioButtonseeker,radioButtonrecruiter;
     public FirebaseAuth mAuth;
-     public FirebaseDatabase database;
+    private DatabaseReference database;
+    private DatabaseReference mref;
+    private DatabaseReference msubref;
+
+
+
      ArrayList<User> Userlist;
     public void onRadioButtonClicked(View view)
     {
@@ -63,7 +70,8 @@ import java.util.ArrayList;
                     spinner_profession.setEnabled(false);
                     spinner_profession.setClickable(false);
                     //Toast.makeText(SignUp.this,"Hello",Toast.LENGTH_SHORT).show();
-                     Type="Recruiter";
+                    Profession="";
+                    Type="Recruiter";
                 }
         }
     }
@@ -75,6 +83,11 @@ import java.util.ArrayList;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth=FirebaseAuth.getInstance();
+
+       database=FirebaseDatabase.getInstance().getReference();
+       mref=database.child("user");
+
+
         Userlist=new ArrayList<>();
         editTextEmail=(EditText)findViewById(R.id.editTextEmail);
         editTextPassword=(EditText)findViewById(R.id.editTextPassword);
@@ -92,9 +105,14 @@ import java.util.ArrayList;
         radioButtonseeker=(RadioButton)findViewById(R.id.Radio_btn_seeker);
         button_next=(Button)findViewById(R.id.button_next);
 
+
+
         findViewById(R.id.button_next).setOnClickListener(this);
         spinner_gender  = (Spinner)findViewById(R.id.spinner_gender);
-//create a list of items for the spinner.
+
+        pd=new ProgressDialog(this);
+
+        //create a list of items for the spinner.
         String[] items = new String[]{"Select", "Male", "Female"};
 //create an adapter to describe how the items are displayed, adapters are used in several places in android.
 //There are multiple variations of this, but this is the basic variant.
@@ -157,7 +175,7 @@ import java.util.ArrayList;
 
         Email =editTextEmail.getText().toString().trim();
         Password=editTextPassword.getText().toString().trim();
-
+        Name=editTextName.getText().toString().trim();
         Contact_Number=editTextContact_No.getText().toString().trim();
         Aadhar_Number=editTextAadhar_No.getText().toString().trim();
         Alternate_Contact_Number=editTextAlternate_contact_No.getText().toString().trim();
@@ -171,6 +189,8 @@ import java.util.ArrayList;
             return;
         }
         Toast.makeText(getApplication(),"outside",Toast.LENGTH_LONG).show();
+        pd.setTitle("Registering Please Wait");
+        pd.show();
         mAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
             @Override
@@ -179,20 +199,40 @@ import java.util.ArrayList;
               Toast.makeText(getApplicationContext(),"Inside",Toast.LENGTH_LONG).show();
               Log.d(TAG,Email);
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplication(),"user Registered",Toast.LENGTH_SHORT).show();
+
                 //    Intent iSignup=new Intent(SignUp.this,Login.class);
-
+                    pd.dismiss();
                     id =FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    database=FirebaseDatabase.getInstance();
-                    DatabaseReference mref=database.getReference();
-                   Userlist.add(new User(Email, id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City,
-                           Gender,  Profession,  Type,  Name,  Alternate_Contact_Number));
 
-                    mref.setValue(Userlist);
 
+                  User u=new User(Email, id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City,
+                          Gender,  Profession,  Type,  Name,  Alternate_Contact_Number);
+                  // Userlist.add(u);
+                    Log.d(TAG,database.toString());
+                    msubref=mref.child(id);
+                    msubref.child("Email").setValue(u.getEmail().toString());
+                    msubref.child("Name").setValue(u.getName().toString());
+                    msubref.child("Id").setValue(u.getId().toString());
+                    msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                    msubref.child("Alternate contact number").setValue(u.getAlternate_Contact_Number().toString());
+                    msubref.child("Aadhar number").setValue(u.getAadhar_Number().toString());
+                    msubref.child("Street number").setValue(u.getStreet_No().toString());
+                    msubref.child("Pincode").setValue(u.getPincode().toString());
+                    msubref.child("State").setValue(u.getState().toString());
+                    msubref.child("city").setValue(u.getCity().toString());
+                    msubref.child("Gender").setValue(u.getGender().toString());
+                    msubref.child("Profession").setValue(u.getProfession().toString());
+                    msubref.child("Type").setValue(u.getType().toString());
+
+                    Toast.makeText(getApplicationContext(),"Email"+u.getEmail().toString(),Toast.LENGTH_SHORT).show();
+                   // Log.d(TAG,"Email id:"+u.getEmail().toString());
+                    //Log.d(TAG,"Contact number:"+u.getContact_Number().toString());
+                       Toast.makeText(getApplicationContext(),"Contact:"+u.getContact_Number().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(),"user Registered",Toast.LENGTH_SHORT).show();
 
                 }
                 else{
+                    pd.dismiss();
                     Toast.makeText(getApplication(),"Registration failed",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -230,10 +270,12 @@ import java.util.ArrayList;
             editTextPassword.requestFocus();
             valid=false;
         }
-        if(Profession.isEmpty()){
-            spinner_profession.requestFocus();
-            valid=false;
-        }
+           if(Type=="Seeker") {
+               if (Profession.isEmpty()) {
+                   spinner_profession.requestFocus();
+                   valid = false;
+               }
+           }
         if(Gender.isEmpty()){
             spinner_gender.requestFocus();
             valid=false;
@@ -270,6 +312,10 @@ import java.util.ArrayList;
             editTextCity.requestFocus();
 
         }
+        if(Name.isEmpty()){
+            editTextName.setError("Enter name");
+            editTextName.requestFocus();
+        }
 
         return valid; }
 
@@ -279,7 +325,7 @@ import java.util.ArrayList;
         switch (v.getId()){
             case R.id.button_next:
 
-                Toast.makeText(getApplication(),"Shit is happening",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplication(),"working",Toast.LENGTH_LONG).show();
                 createuser();
                 break;
             /*case R.id.textViewLogin:

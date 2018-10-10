@@ -19,48 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/radiogroup"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
-                    <RadioButton
-                        android:id="@+id/recruiter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="10dp"
-                        android:padding="8dp"
-                        android:text="Recruiter"
-                        android:textColor="@android:color/holo_blue_dark" />
-
-                    <RadioButton
-                        android:id="@+id/seeker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="10dp"
-                        android:padding="8dp"
-                        android:text="Seeker"
-                        android:textColor="@android:color/holo_blue_dark" />
-                </LinearLayout>
-            </RadioGroup>
-
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/logo"
                 android:layout_width="240dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:padding="4dp"
-                app:srcCompat="@drawable/logo" />
+                android:src="@drawable/logo" />
 
             <EditText
                 android:id="@+id/username"
@@ -99,10 +66,13 @@
                 android:layout_height="1dp"></View>
 
             <CheckBox
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/remember_me_checkbox"
                 android:layout_marginTop="6dp"
                 android:padding="8dp"
+                android:onClick="onCheckBoxClicked"
                 android:text="Remember me" />
 
             <Button
@@ -114,7 +84,7 @@
                 android:id="@+id/buttonsignup"
                 style="@style/ebutton_style"
                 android:text="Sign up"
-                android:onClick="onSignUp"/>
+                />
 
             <TextView
                 android:id="@+id/forget_password_textView"
@@ -125,6 +95,17 @@
                 android:text="Forget Password?"
                 android:clickable="true"
                 android:textColor="@android:color/background_dark" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showRecruiter"
+                android:text="ShowRecruiter...."/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showSeeker"
+                android:text="ShowSeeker"/>
+
 
 
         </LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/profile_Seeker"
+
+        android:icon="@drawable/profileicon"
+        android:title="Profile" >
+    </item>
+    <item android:id="@+id/contact_Seeker"
+
+        android:icon="@drawable/ic_phone_black_24dp"
+        android:title="Contact" >
+
+    </item>
+    <item android:id="@+id/help_Seeker"
+
+        android:icon="@drawable/ic_live_help_black_24dp"
+        android:title="Help"
+        >
+
+    </item>
+    <item android:id="@+id/logout_Seeker"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="Logout">
+    </item>
+
+
+
+</menu>
