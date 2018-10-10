@@ -12,6 +12,10 @@ public class Seeker_Edit_Profile extends AppCompatActivity implements View.OnCli
 
     Spinner spinner_gender,spinner_profession;
     String Profession="";
+    public void dothis(View view)
+    {
+        Toast.makeText(getApplicationContext(),"Temporary ",Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
