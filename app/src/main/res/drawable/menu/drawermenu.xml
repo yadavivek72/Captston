@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/event" android:title="Add Employee" android:icon="@drawable/ic_group_add_black_24dp"></item>
+    <item android:id="@+id/search" android:title="See Employee" android:icon="@drawable/ic_visibility_black_24dp"></item>
+    <item android:id="@+id/settings" android:title="Contact" android:icon="@drawable/ic_phone_black_24dp"></item>
+    <item android:id="@+id/activities" android:title="Help" android:icon="@drawable/ic_live_help_black_24dp"></item>
+    <item android:id="@+id/logout" android:title="Logout" android:icon="@drawable/ic_exit_to_app_black_24dp"></item>
+</menu>
