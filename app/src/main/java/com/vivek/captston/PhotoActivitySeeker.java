@@ -43,6 +43,7 @@ public class PhotoActivitySeeker extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Select Image");
         setContentView(R.layout.activity_photo_seeker);
         chooseimgseeker=(Button) findViewById(R.id.button_chooseimg_seeker);
        uploadimgseeker= (Button) findViewById(R.id.button_uploadimg_seeker);

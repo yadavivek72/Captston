@@ -41,6 +41,7 @@ public class Recruiter_Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Profile");
         setContentView(R.layout.activity_recruiter__profile);
         emp_img1 = (ImageView)findViewById(R.id.recruiter_emp_img);
         emp_small_img1 = (ImageView)findViewById(R.id.recruiter_emp_smallimg);

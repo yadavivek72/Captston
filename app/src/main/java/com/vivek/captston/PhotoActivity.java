@@ -44,6 +44,7 @@ public class PhotoActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Select Image");
         setContentView(R.layout.activity_photo);
     findViewById(R.id.button_chooseimg).setOnClickListener(this);
     findViewById(R.id.button_uploadimg).setOnClickListener(this);

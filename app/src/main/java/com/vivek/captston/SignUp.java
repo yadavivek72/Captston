@@ -82,6 +82,7 @@ import java.util.ArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        setTitle("Sign Up");
         mAuth=FirebaseAuth.getInstance();
 
        database=FirebaseDatabase.getInstance().getReference();

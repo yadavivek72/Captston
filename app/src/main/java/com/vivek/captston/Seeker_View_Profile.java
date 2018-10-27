@@ -33,6 +33,7 @@ public class Seeker_View_Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seeker__view__profile);
+        setTitle("Profile");
         emp_img1 = (ImageView)findViewById(R.id.seeker_emp_img);
         emp_small_img1 = (ImageView)findViewById(R.id.seeker_emp_smallimg);
         emp_name1 = (TextView)findViewById(R.id.seeker_emp_name);

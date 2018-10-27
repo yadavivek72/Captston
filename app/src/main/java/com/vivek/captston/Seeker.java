@@ -44,6 +44,8 @@ public class Seeker extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seeker);
+
+        setTitle("Home");
         textviewbenefits=(TextView)findViewById(R.id.textviewbenefits);
         textviewcomment=(TextView)findViewById(R.id.textviewcomments);
         Img_Seeker_profile_pic=(ImageView)findViewById(R.id.Img_profile_Seeker);

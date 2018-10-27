@@ -23,6 +23,7 @@ public class EditRecruiterProfileAcitvity extends AppCompatActivity implements V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Edit Profile");
         setContentView(R.layout.activity_edit_recruiter_profile_acitvity);
         emp_img1 = (ImageView)findViewById(R.id.recruiter_edit_emp_img);
         emp_small_img1 = (ImageView)findViewById(R.id.recruiter_edit_emp_smallimg);

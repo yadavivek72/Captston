@@ -17,6 +17,7 @@ public class Seeker_Edit_Profile extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seeker__edit__profile);
+        setTitle("Edit Profile");
         String[] items = new String[]{"Select", "Male", "Female"};
 
         spinner_gender  = (Spinner)findViewById(R.id.spinner_gender);

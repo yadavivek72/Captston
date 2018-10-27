@@ -19,6 +19,7 @@ public class AvailableWorkers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Available Workers");
         setContentView(R.layout.activity_available_workers);
         professsion=(TextView)findViewById(R.id.ava_profession);
         //Intent in = getIntent();

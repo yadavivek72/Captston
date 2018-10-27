@@ -54,6 +54,7 @@ public class Recruiter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Home");
         setContentView(R.layout.activity_recruiter);
         m = (DrawerLayout) findViewById(R.id.drawer);
         navigation = (NavigationView) findViewById(R.id.navigationView);
