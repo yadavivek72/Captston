@@ -29,6 +29,7 @@
                     android:layout_height="150dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="45dp"
+                    android:id="@+id/Img_profile_Seeker"
                     android:src="@drawable/profileimage" />
 
                 <TextView
@@ -37,6 +38,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:text="Name"
+                    android:id="@+id/Seeker_name"
                     android:textColor="#fff"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -153,6 +155,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:text="XXX-XXXX-XXXX"
+                    android:id="@+id/Seeker_adhar_no"
                     android:paddingLeft="20dp"/>
             </LinearLayout>
 
@@ -170,6 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+91 98761321654"
+                    android:id="@+id/Seeker_mob_no"
                     android:textSize="15sp"
                     android:paddingLeft="20dp"/>
             </LinearLayout>

@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class Seeker_View_Profile extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class Seeker_View_Profile extends AppCompatActivity {
      private DatabaseReference mref;
      private DatabaseReference msubref;
      private FirebaseAuth mAuth;
+     private String UrlToImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,13 @@ public class Seeker_View_Profile extends AppCompatActivity {
                         emp_city1.setText(dataSnapshot.child("city").getValue().toString());
                         emp_aadhar1.setText(dataSnapshot.child("Aadhar number").getValue().toString());
                         emp_email1.setText(dataSnapshot.child("Email").getValue().toString());
+                             if(dataSnapshot.hasChild("urlToImage")){
+                        UrlToImg=dataSnapshot.child("urlToImage").getValue().toString();
+                        if(!UrlToImg.isEmpty()){
+
+                            Picasso.get().load(UrlToImg).transform(new CropCircleTransformation()).into(emp_img1);
+
+                        }}
 
 
 

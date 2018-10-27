@@ -224,6 +224,7 @@ import java.util.ArrayList;
                     msubref.child("Profession").setValue(u.getProfession().toString());
                     msubref.child("Type").setValue(u.getType().toString());
 
+
                     Toast.makeText(getApplicationContext(),"Email"+u.getEmail().toString(),Toast.LENGTH_SHORT).show();
                    // Log.d(TAG,"Email id:"+u.getEmail().toString());
                     //Log.d(TAG,"Contact number:"+u.getContact_Number().toString());

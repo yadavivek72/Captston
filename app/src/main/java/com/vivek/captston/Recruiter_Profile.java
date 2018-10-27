@@ -16,8 +16,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class Recruiter_Profile extends AppCompatActivity {
     ImageView emp_img1, emp_small_img1;
@@ -32,6 +35,7 @@ public class Recruiter_Profile extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     String userid;
+    private  String UrlToImg;
 
    String TAG=Recruiter_Profile.class.getSimpleName();
     @Override
@@ -43,7 +47,7 @@ public class Recruiter_Profile extends AppCompatActivity {
         emp_name1 = (TextView)findViewById(R.id.recruiter_emp_name);
         emp_aadhar1 = (TextView)findViewById(R.id.recruiter_emp_aadhar);
         emp_gender1 = (TextView)findViewById(R.id.recruiter_emp_gender);
-        emp_profession1 = (TextView)findViewById(R.id.recruiter_emp_profession);
+//        emp_profession1 = (TextView)findViewById(R.id.recruiter_emp_profession);
         emp_email1 = (TextView)findViewById(R.id.recruiter_emp_email);
         emp_street1 = (TextView)findViewById(R.id.recruiter_emp_street);
         emp_state1 = (TextView)findViewById(R.id.recruiter_emp_state);
@@ -53,53 +57,63 @@ public class Recruiter_Profile extends AppCompatActivity {
         emp_alter_contact_no1 = (TextView)findViewById(R.id.recruiter_emp_alter_contact_no);
 
 
-        //database refrence
-        user=FirebaseAuth.getInstance().getCurrentUser();
-        userid=user.getUid();
-        database=FirebaseDatabase.getInstance().getReference();
-        mref=database.child("User").child(userid).child("0");
-
-        //infoCurrentUser();
+        displayProfile();
 
 
     }
 
     //function for retriving current user information
-    public void infoCurrentUser(){
-
-        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void displayProfile(){
+        database=FirebaseDatabase.getInstance().getReference();
+        Toast.makeText(getApplicationContext(),"id"+FirebaseAuth.getInstance().getCurrentUser().getUid().toString(),Toast.LENGTH_SHORT).show();
+        database.child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //
-              //   user=new ArrayList<User>();
+                if(dataSnapshot.exists()){
+
+                    emp_name1.setText(dataSnapshot.child("Name").getValue().toString());
+                    emp_street1.setText(dataSnapshot.child("Street number").getValue().toString());
+                    emp_state1.setText(dataSnapshot.child("State").getValue().toString());
+                    //emp_profession1.setText(dataSnapshot.child("Profession").getValue().toString());
+                    emp_pincode1.setText(dataSnapshot.child("Pincode").getValue().toString());
+                    emp_gender1.setText(dataSnapshot.child("Gender").getValue().toString());
+                    emp_contact_no1.setText(dataSnapshot.child("Contact number").getValue().toString());
+                    emp_alter_contact_no1.setText(dataSnapshot.child("Alternate contact number").getValue().toString());
+                    emp_city1.setText(dataSnapshot.child("city").getValue().toString());
+                    emp_aadhar1.setText(dataSnapshot.child("Aadhar number").getValue().toString());
+                    emp_email1.setText(dataSnapshot.child("Email").getValue().toString());
+                   if(dataSnapshot.hasChild("urlToImage")) {
+
+                       UrlToImg = dataSnapshot.child("urlToImage").getValue().toString();
 
 
-               User  us=dataSnapshot.getValue(User.class);
+                           Picasso.get().load(UrlToImg).transform(new CropCircleTransformation()).into(emp_img1);
 
-                emp_name1.setText(us.getName());
-                emp_aadhar1.setText(us.getAadhar_Number());
-                emp_city1.setText(us.getCity());
-                emp_email1.setText(us.getEmail());
-                emp_gender1.setText(us.getGender());
-                emp_contact_no1.setText(us.getContact_Number());
-                emp_alter_contact_no1.setText(us.getAlternate_Contact_Number());
-                emp_pincode1.setText(us.getPincode());
-                emp_profession1.setText(us.getProfession());
-                emp_state1.setText(us.getState());
-                emp_street1.setText(us.getStreet_No());
 
+                   }
+                   else
+                       Toast.makeText(getApplicationContext(),"Not loading",Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Data does not exit",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Loading failed",Toast.LENGTH_LONG).show();
-                Log.w(TAG,"Load user data",databaseError.toException());
+                Toast.makeText(getApplicationContext(),"Data loading failed",Toast.LENGTH_SHORT).show();
             }
         });
 
 
-    }
 
+
+    }
     public void dothis(View view)
 
     {

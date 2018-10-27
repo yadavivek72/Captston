@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="190dp"
     android:background="@drawable/navigation"
     android:padding="20dp">
     <ImageView
         android:src="@drawable/profileimage"
-        android:id="@+id/headerpic"
-        android:onClick="dothis"
+        android:id="@+id/headerpic_seeker"
+
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/header_name_seeker"
         android:text="Name "
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -22,6 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/header_mailid_seeker"
         android:text="user@gmail.com"
         android:textColor="@color/white"
         />
