@@ -240,6 +240,7 @@ import java.util.ArrayList;
                             msubref.child("Contact number").setValue(u.getContact_Number().toString());
                             msubref.child("urlToImage").setValue(urlToImage);
                             msubref.child("city").setValue(u.getCity().toString());
+                            msubref.child("Id").setValue(id);
 
                         }
                         if(spinner_profession.getSelectedItem().toString().equals("BrickLayer"))
@@ -249,6 +250,7 @@ import java.util.ArrayList;
                             msubref.child("Contact number").setValue(u.getContact_Number().toString());
                             msubref.child("urlToImage").setValue(urlToImage);
                             msubref.child("city").setValue(u.getCity().toString());
+                            msubref.child("Id").setValue(id);
 
                         }
 
@@ -259,7 +261,7 @@ import java.util.ArrayList;
                             msubref.child("Contact number").setValue(u.getContact_Number().toString());
                             msubref.child("urlToImage").setValue(urlToImage);
                             msubref.child("city").setValue(u.getCity().toString());
-
+                            msubref.child("Id").setValue(id);
                         }
 
                         if(spinner_profession.getSelectedItem().toString().equals("Painter"))
@@ -269,6 +271,7 @@ import java.util.ArrayList;
                             msubref.child("Contact number").setValue(u.getContact_Number().toString());
                             msubref.child("urlToImage").setValue(urlToImage);
                             msubref.child("city").setValue(u.getCity().toString());
+                            msubref.child("Id").setValue(id);
 
                         }
 
@@ -279,6 +282,7 @@ import java.util.ArrayList;
                             msubref.child("Contact number").setValue(u.getContact_Number().toString());
                             msubref.child("urlToImage").setValue(urlToImage);
                             msubref.child("city").setValue(u.getCity().toString());
+                            msubref.child("Id").setValue(id);
 
                         }
 
@@ -289,6 +293,7 @@ import java.util.ArrayList;
                             msubref.child("Contact number").setValue(u.getContact_Number().toString());
                             msubref.child("urlToImage").setValue(urlToImage);
                             msubref.child("city").setValue(u.getCity().toString());
+                            msubref.child("Id").setValue(id);
 
                         }
 

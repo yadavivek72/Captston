@@ -179,8 +179,8 @@ public class Recruiter extends AppCompatActivity {
 
                 break;
             case R.id.carpainter:
-                Toast.makeText(getApplicationContext(),"Carpainter",Toast.LENGTH_SHORT).show();
-                categorie="Carpainter";
+                Toast.makeText(getApplicationContext(),"Carpenter",Toast.LENGTH_SHORT).show();
+                categorie="Carpenter";
                 img_var="2";
                 editor.putString("categorie",categorie);
                 editor.putString("imgvar",img_var);
@@ -200,7 +200,7 @@ public class Recruiter extends AppCompatActivity {
                 break;
             case R.id.bricklayer:
                 Toast.makeText(getApplicationContext(),"BrickLayer",Toast.LENGTH_SHORT).show();
-                categorie="Bricklayer";
+                categorie="BrickLayer";
                 img_var="4";
                 editor.putString("categorie",categorie);
                 editor.putString("imgvar",img_var);
