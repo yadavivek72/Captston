@@ -39,6 +39,7 @@ public class PhotoActivity extends AppCompatActivity implements View.OnClickList
     private String ruserid;
     private FirebaseStorage rstorage;
    private StorageReference rstorageReference;
+   private DatabaseReference msubref;
 
 
     @Override
@@ -54,6 +55,7 @@ public class PhotoActivity extends AppCompatActivity implements View.OnClickList
         rstorage=FirebaseStorage.getInstance();
         ruserid=mAuth.getCurrentUser().getUid().toString();
         rdatabase= FirebaseDatabase.getInstance().getReference("user").child(ruserid);
+        msubref=FirebaseDatabase.getInstance().getReference("seeker");
         rstorageReference=rstorage.getReference().child("Images").child("RecruiterImages");
 
 
@@ -93,6 +95,7 @@ public class PhotoActivity extends AppCompatActivity implements View.OnClickList
                     },500);
                     String urlToImage=taskSnapshot.getDownloadUrl().toString();
                     rdatabase.child("urlToImage").setValue(urlToImage);
+
                     Picasso.get().load(urlToImage).transform(new CropCircleTransformation()).into(uploadimgview);
 
                     Toast.makeText(getApplicationContext(),"Uploaded",Toast.LENGTH_SHORT).show();

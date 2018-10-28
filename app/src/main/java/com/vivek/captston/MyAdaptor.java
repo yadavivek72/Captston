@@ -37,7 +37,7 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyHolder> {
         holder.Name.setText(p1.getName());
         Log.d("1st check" , String.valueOf(0));
 
-        holder.Rating.setText("Hello");
+        holder.Rating.setText(p1.getRating());
         Log.d("2nd check" , String.valueOf(1));
 
         holder.WorkImage.setImageResource(p1.getImage());

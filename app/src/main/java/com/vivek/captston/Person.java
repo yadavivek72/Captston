@@ -3,7 +3,7 @@ package com.vivek.captston;
 public class Person {
     int Image;
     String Name;
-    int Rating;
+    String Rating;
 
     public int getImage() {
         return Image;
@@ -21,11 +21,11 @@ public class Person {
         this.Name = Name;
     }
 
-    public int getRating() {
+    public String getRating() {
         return Rating;
     }
 
-    public void setRating(int Rating) {
+    public void setRating(String Rating) {
         this.Rating = Rating;
     }
 }

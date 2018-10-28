@@ -3,7 +3,9 @@ package com.vivek.captston;
 import android.app.Activity;
 //import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -156,57 +158,74 @@ public class Recruiter extends AppCompatActivity {
 
     public void dothis(View v)
     {
-        Bundle bundle;
+        SharedPreferences sharedPreferences= getSharedPreferences("Categories", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        String categorie;
+        String img_var;
         Intent intent;
         switch(v.getId())
         {
+
             case R.id.electrician:
                 Toast.makeText(getApplicationContext(),"Electrician",Toast.LENGTH_SHORT).show();
-               // bundle=new Bundle();
-               // bundle.putString("cat","Electrician");
+                categorie="Electrician";
+                img_var="1";
+                editor.putString("categorie",categorie);
+                editor.putString("imgvar",img_var);
+                editor.commit();
+
                 intent=new Intent(getApplicationContext(),GetLocation.class);
-                //intent.putExtras(bundle);
                 startActivity(intent);
 
                 break;
             case R.id.carpainter:
                 Toast.makeText(getApplicationContext(),"Carpainter",Toast.LENGTH_SHORT).show();
-                //bundle=new Bundle();
-                //bundle.putString("cat","Carpainter");
+                categorie="Carpainter";
+                img_var="2";
+                editor.putString("categorie",categorie);
+                editor.putString("imgvar",img_var);
+                editor.commit();
                 intent=new Intent(this,GetLocation.class);
-                //intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             case R.id.plumber:
                 Toast.makeText(getApplicationContext(),"Plumber",Toast.LENGTH_SHORT).show();
-                //bundle=new Bundle();
-               // bundle.putString("cat","Plumber");
+                categorie="Plumber";
+                img_var="3";
+                editor.putString("categorie",categorie);
+                editor.putString("imgvar",img_var);
+                editor.commit();
                 intent=new Intent(getApplicationContext(),GetLocation.class);
-                //ntent.putExtras(bundle);
                 startActivity(intent);
                 break;
             case R.id.bricklayer:
                 Toast.makeText(getApplicationContext(),"BrickLayer",Toast.LENGTH_SHORT).show();
-                //bundle=new Bundle();
-                //bundle.putString("cat","BrickLayer");
+                categorie="Bricklayer";
+                img_var="4";
+                editor.putString("categorie",categorie);
+                editor.putString("imgvar",img_var);
+                editor.commit();
                 intent=new Intent(getApplicationContext(),GetLocation.class);
-                //intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             case R.id.painter:
                 Toast.makeText(getApplicationContext(),"Painter",Toast.LENGTH_SHORT).show();
-                //bundle=new Bundle();
-                //bundle.putString("cat","{Painter");
+                categorie="Painter";
+                img_var="5";
+                editor.putString("categorie",categorie);
+                editor.putString("imgvar",img_var);
+                editor.commit();
                 intent=new Intent(getApplicationContext(),GetLocation.class);
-                //intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             case R.id.labour:
                 Toast.makeText(getApplicationContext(),"Labour",Toast.LENGTH_SHORT).show();
-                //bundle=new Bundle();
-                //bundle.putString("cat","Labour");
+                categorie="Labour";
+                img_var="6";
+                editor.putString("categorie",categorie);
+                editor.putString("imgvar",img_var);
+                editor.commit();
                 intent=new Intent(getApplicationContext(),GetLocation.class);
-                //intent.putExtras(bundle);
                 startActivity(intent);
                 break;
             case R.id.headerpic:
