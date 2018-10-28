@@ -32,7 +32,8 @@
         <activity android:name=".GetLocation" />
         <activity android:name=".AvailableWorkers" />
         <activity android:name=".PhotoActivitySeeker" />
-        <activity android:name=".Show_Available_worker_Profile"></activity>
+        <activity android:name=".Show_Available_worker_Profile" />
+        <activity android:name=".Recruiter_test"></activity>
     </application>
 
 </manifest>
