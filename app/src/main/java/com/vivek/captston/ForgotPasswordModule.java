@@ -25,6 +25,7 @@ private String Email;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_module);
+        setTitle("Forgot Password");
 
       pd=new ProgressDialog(this);
 

@@ -29,7 +29,7 @@ import java.util.ArrayList;
  public class SignUp extends Activity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
     String Email="", id, Contact_Number, Aadhar_Number,  Street_No,  Pincode, State,  City, Gender="",Password=""
-            ,Confirm_password="",  Profession="",  Type="",  Name="",  Alternate_Contact_Number;
+            ,Confirm_password="",  Profession="",  Type="",  Name="",  Alternate_Contact_Number,urlToImage="";
 
     private String TAG="abcdefg";
     EditText editTextEmail,editTextContact_No,editTextAadhar_No,editTextStreet,editTextPassword,editTextConfirmPassword,
@@ -46,7 +46,8 @@ import java.util.ArrayList;
     private DatabaseReference database;
     private DatabaseReference mref;
     private DatabaseReference msubref;
-
+    private DatabaseReference msubref_seeker;
+    private DatabaseReference msubref_recruiter;
 
 
      ArrayList<User> Userlist;
@@ -82,10 +83,14 @@ import java.util.ArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        setTitle("Sign Up");
         mAuth=FirebaseAuth.getInstance();
 
        database=FirebaseDatabase.getInstance().getReference();
        mref=database.child("user");
+       msubref_recruiter=database.child("recruiter");
+       msubref_seeker=database.child("seeker");
+
 
 
         Userlist=new ArrayList<>();
@@ -223,6 +228,81 @@ import java.util.ArrayList;
                     msubref.child("Gender").setValue(u.getGender().toString());
                     msubref.child("Profession").setValue(u.getProfession().toString());
                     msubref.child("Type").setValue(u.getType().toString());
+
+                    //creation of the separate trees for easy retrival
+
+                    if(radioButtonseeker.isChecked())
+                    {
+                        if(spinner_profession.getSelectedItem().toString().equals("Plumber"))
+                        {
+                            msubref = msubref_seeker.child("Plumber").child(id);
+                            msubref.child("Name").setValue(u.getName().toString());
+                            msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                            msubref.child("urlToImage").setValue(urlToImage);
+                            msubref.child("city").setValue(u.getCity().toString());
+
+                        }
+                        if(spinner_profession.getSelectedItem().toString().equals("BrickLayer"))
+                        {
+                            msubref = msubref_seeker.child("BrickLayer").child(id);
+                            msubref.child("Name").setValue(u.getName().toString());
+                            msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                            msubref.child("urlToImage").setValue(urlToImage);
+                            msubref.child("city").setValue(u.getCity().toString());
+
+                        }
+
+                        if(spinner_profession.getSelectedItem().toString().equals("Carpenter"))
+                        {
+                            msubref = msubref_seeker.child("Carpenter").child(id);
+                            msubref.child("Name").setValue(u.getName().toString());
+                            msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                            msubref.child("urlToImage").setValue(urlToImage);
+                            msubref.child("city").setValue(u.getCity().toString());
+
+                        }
+
+                        if(spinner_profession.getSelectedItem().toString().equals("Painter"))
+                        {
+                            msubref = msubref_seeker.child("painter").child(id);
+                            msubref.child("Name").setValue(u.getName().toString());
+                            msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                            msubref.child("urlToImage").setValue(urlToImage);
+                            msubref.child("city").setValue(u.getCity().toString());
+
+                        }
+
+                        if(spinner_profession.getSelectedItem().toString().equals("Labour"))
+                        {
+                            msubref = msubref_seeker.child("Labour").child(id);
+                            msubref.child("Name").setValue(u.getName().toString());
+                            msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                            msubref.child("urlToImage").setValue(urlToImage);
+                            msubref.child("city").setValue(u.getCity().toString());
+
+                        }
+
+                        if(spinner_profession.getSelectedItem().toString().equals("Electrician"))
+                        {
+                            msubref = msubref_seeker.child("Electrician").child(id);
+                            msubref.child("Name").setValue(u.getName().toString());
+                            msubref.child("Contact number").setValue(u.getContact_Number().toString());
+                            msubref.child("urlToImage").setValue(urlToImage);
+                            msubref.child("city").setValue(u.getCity().toString());
+
+                        }
+
+
+
+
+
+
+
+                    }
+                    else if(radioButtonrecruiter.isChecked())
+                    {
+                        msubref=msubref_recruiter.child(id);
+                    }
 
                     Toast.makeText(getApplicationContext(),"Email"+u.getEmail().toString(),Toast.LENGTH_SHORT).show();
                    // Log.d(TAG,"Email id:"+u.getEmail().toString());

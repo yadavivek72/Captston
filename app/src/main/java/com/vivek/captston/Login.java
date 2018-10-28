@@ -93,6 +93,7 @@ public class Login extends Activity implements View.OnClickListener {
         editTextPassword.setText(Password_sh);
         database= FirebaseDatabase.getInstance().getReference();
         mref=database.child("user");
+
         logo=(ImageView)findViewById(R.id.logo);
         // progressBar=findViewById(R.id.progressBar);
         findViewById(R.id.buttonsignup).setOnClickListener(this);
@@ -106,7 +107,36 @@ public class Login extends Activity implements View.OnClickListener {
         if(mAuth.getCurrentUser() != null)
         {
 
-            startActivity(new Intent(Login.this,Recruiter.class));
+
+            FirebaseUser user = mAuth.getCurrentUser();
+
+            msubref=mref.child(user.getUid());
+            msubref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        String type=dataSnapshot.child("Type").getValue(String.class);
+                        //  Toast.makeText(getApplicationContext(),"Type"+type,Toast.LENGTH_SHORT).show();
+
+                        if(type.equals("Recruiter")){
+                            Intent intent=new Intent(getApplication(),Recruiter.class);
+                            startActivity(intent);
+                        }
+                        else{
+
+                            Intent intent1=new Intent(getApplication(),Seeker.class);
+                            startActivity(intent1);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
             finish();
         }
 
@@ -143,7 +173,7 @@ public class Login extends Activity implements View.OnClickListener {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if(dataSnapshot.exists()){
                                String type=dataSnapshot.child("Type").getValue(String.class);
-                               Toast.makeText(getApplicationContext(),"Type"+type,Toast.LENGTH_SHORT).show();
+                             //  Toast.makeText(getApplicationContext(),"Type"+type,Toast.LENGTH_SHORT).show();
 
                                if(type.equals("Recruiter")){
                                    Intent intent=new Intent(getApplication(),Recruiter.class);

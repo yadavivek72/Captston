@@ -12,14 +12,12 @@ public class Seeker_Edit_Profile extends AppCompatActivity implements View.OnCli
 
     Spinner spinner_gender,spinner_profession;
     String Profession="";
-    public void dothis(View view)
-    {
-        Toast.makeText(getApplicationContext(),"Temporary ",Toast.LENGTH_SHORT).show();
-    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seeker__edit__profile);
+        setTitle("Edit Profile");
         String[] items = new String[]{"Select", "Male", "Female"};
 
         spinner_gender  = (Spinner)findViewById(R.id.spinner_gender);
