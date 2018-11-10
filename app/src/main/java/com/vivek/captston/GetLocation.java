@@ -99,7 +99,7 @@ public class GetLocation extends AppCompatActivity {
                             //List<Address> locationlist = geocoder.getFromLocation(latitude,longitue,1);
                             List<Address> addresses = geocoder.getFromLocation(latitude, longitue, 1);
 
-
+//kvns
                             if (addresses.size() > 0) {
                                 // Address address = locationlist.get(0);
                                 String address1 = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
