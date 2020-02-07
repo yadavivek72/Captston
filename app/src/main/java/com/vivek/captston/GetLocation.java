@@ -1,6 +1,8 @@
 package com.vivek.captston;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +36,9 @@ public class GetLocation extends AppCompatActivity {
     CardView currLocation;
     Button otherLocation;
     Location lastlocation;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    String Scity;
 
     public void goPlacePicker(View view) {
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
@@ -52,8 +58,39 @@ public class GetLocation extends AppCompatActivity {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(GetLocation.this, data);
+                Geocoder geocoder = new Geocoder(this);
+                try
+                {
+                    List<Address> addresses = geocoder.getFromLocation(place.getLatLng().latitude,place.getLatLng().longitude, 1);
+                    String address = addresses.get(0).getAddressLine(0);
+                    //String city = addresses.get(0).getAddressLine(1);
+                    String city1=addresses.get(0).getSubAdminArea();
+                    //String country = addresses.get(0).getAddressLine(2);
+                    String knownName1 = addresses.get(0).getFeatureName();
+                    String Locality=addresses.get(0).getLocality();
+                    if (city1 != null)
+                        Scity=city1;
+                    else if (knownName1 != null)
+                        Scity=knownName1;
+                    else if (Locality!=null)
+                        Scity=Locality;
+                    editor.putString("City",Scity);
+                    editor.commit();
+                    Toast.makeText(GetLocation.this, "AddressPlacePicker" + address, Toast.LENGTH_LONG).show();
+                    Toast.makeText(GetLocation.this, "CityPlacePicker" + Scity, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), AvailableWorkers.class);
+                    startActivity(intent);
+
+
+                } catch (IOException e)
+                {
+
+                    e.printStackTrace();
+                }
+
                 //tv.setText(place.getAddress());
-                Toast.makeText(GetLocation.this, "Address" + place.getAddress() + "\n", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(GetLocation.this, "Address" + place.getAddress() + "\n", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -64,14 +101,17 @@ public class GetLocation extends AppCompatActivity {
         setContentView(R.layout.activity_get_location);
         currLocation = (CardView) findViewById(R.id.curr_Location);
         otherLocation = (Button) findViewById(R.id.other_Location);
+        sharedPreferences= getSharedPreferences("Categories", Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(GetLocation.this);
 
         }
 
     public void dothis(View view) {
         Toast.makeText(getApplicationContext(),"here",Toast.LENGTH_LONG).show();
         getLocation();
-        //Intent intent = new Intent(getApplicationContext(), AvailableWorkers.class);
-        //startActivity(intent);
+
     }
 
     void getLocation() {
@@ -85,6 +125,7 @@ public class GetLocation extends AppCompatActivity {
                 public void onSuccess(Location location) {
 
                     if (location != null) {
+                        Toast.makeText(getApplicationContext(),"not null",Toast.LENGTH_LONG).show();
                         lastlocation = location;
                         double latitude = lastlocation.getLatitude();
                         double longitue = lastlocation.getLongitude();
@@ -108,13 +149,23 @@ public class GetLocation extends AppCompatActivity {
                                 String country1 = addresses.get(0).getCountryName();
                                 String postalCode1 = addresses.get(0).getPostalCode();
                                 String knownName1 = addresses.get(0).getFeatureName();
+                                String Locality=addresses.get(0).getLocality();
+
+
+                                if (city1 != null)
+                                    Scity=city1;
+                                else if (knownName1 != null)
+                                    Scity=knownName1;
+                                else if (Locality!=null)
+                                    Scity=Locality;
+
                                 Toast.makeText(GetLocation.this,"Address"+address1,Toast.LENGTH_LONG).show();
-                                // address.setText(address1);
-                                //city.setText(city1);
-                                //state.setText(state1);
-                                //country.setText(country1);
-                                //postalcode.setText(postalCode1);
-                                //knownplace.setText(knownName1);
+                                Toast.makeText(GetLocation.this,"City"+Scity,Toast.LENGTH_LONG).show();
+                                editor.putString("City",Scity);
+                                editor.commit();
+                                Intent intent = new Intent(getApplicationContext(), AvailableWorkers.class);
+                                startActivity(intent);
+
 
 
                                 // tvphysicaladdress.setText("Address is:"+ address);

@@ -32,6 +32,7 @@ public class AvailableWorkers extends AppCompatActivity {
     private DatabaseReference msubref;
     private DatabaseReference msubref_seeker;
     public FirebaseAuth mAuth;
+    String City;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class AvailableWorkers extends AppCompatActivity {
        //category of the type of the worker
         String categorie=sharedPreferences.getString("categorie",DEFAULT);
         String img_var=sharedPreferences.getString("imgvar",DEFAULT);
+        City=sharedPreferences.getString("City",DEFAULT);
         Toast.makeText(getApplicationContext(),"String"+img_var,Toast.LENGTH_SHORT).show();
 
         integer_img_var=Integer.parseInt(img_var);
@@ -73,7 +75,7 @@ public class AvailableWorkers extends AppCompatActivity {
                 long count=dataSnapshot.getChildrenCount();
                 Toast.makeText(getApplicationContext(),"Children:"+count,Toast.LENGTH_SHORT).show();
                 for(DataSnapshot child:dataSnapshot.getChildren()) {
-                    if ((child.child("city").getValue().toString()).equals("Kapurthala")) {
+                    if ((child.child("city").getValue().toString()).equals(City)) {
                         Person p = new Person();
                         Toast.makeText(getApplicationContext(), "Value:" + child.child("Name").getValue().toString(), Toast.LENGTH_SHORT).show();
 

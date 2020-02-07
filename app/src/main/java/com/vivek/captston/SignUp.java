@@ -131,7 +131,7 @@ import java.util.ArrayList;
 
         spinner_profession  = (Spinner)findViewById(R.id.spinner_profession);
 //create a list of items for the spinner.
-        String[] items1 = new String[]{"Electrician", "BrickLayer", "Carpenter","Painter"};
+        String[] items1 = new String[]{"Electrician", "BrickLayer", "Carpenter","Painter","Plumber","Labour"};
 //create an adapter to describe how the items are displayed, adapters are used in several places in android.
 //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> profession_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);

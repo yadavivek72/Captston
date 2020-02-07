@@ -64,18 +64,6 @@ public class Login extends Activity implements View.OnClickListener {
     }
 
 
-    public void showSeeker(View view)
-    {
-        Intent i=new Intent(Login.this,Seeker.class);
-        startActivity(i);
-    }
-
-
-    public void showRecruiter(View view)
-    {
-        Intent i=new Intent(Login.this,Recruiter.class);
-        startActivity(i);
-    }
 
 
 
@@ -89,8 +77,10 @@ public class Login extends Activity implements View.OnClickListener {
         SharedPreferences sharedPreferences= getSharedPreferences("MyData", Context.MODE_PRIVATE);
         Email_sh=sharedPreferences.getString("Email",DEFAULT);
         Password_sh=sharedPreferences.getString("Password",DEFAULT);
-        editTextEmail.setText(Email_sh);
-        editTextPassword.setText(Password_sh);
+        if(Email_sh!=null) {
+            editTextEmail.setText(Email_sh);
+            editTextPassword.setText(Password_sh);
+        }
         database= FirebaseDatabase.getInstance().getReference();
         mref=database.child("user");
 
@@ -121,11 +111,13 @@ public class Login extends Activity implements View.OnClickListener {
                         if(type.equals("Recruiter")){
                             Intent intent=new Intent(getApplication(),Recruiter.class);
                             startActivity(intent);
+                            finish();
                         }
                         else{
 
                             Intent intent1=new Intent(getApplication(),Seeker.class);
                             startActivity(intent1);
+                            finish();
                         }
 
                     }

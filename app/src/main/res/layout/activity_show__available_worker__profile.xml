@@ -20,7 +20,6 @@
         android:paddingBottom="20dp">
 
 
-
         <RelativeLayout
 
             android:id="@+id/imgUser"
@@ -36,8 +35,9 @@
             android:background="@drawable/circle_border">
 
 
-
             <ImageView
+
+                android:id="@+id/img_profile"
 
                 android:layout_width="120dp"
 
@@ -51,16 +51,12 @@
 
                 android:padding="3dp"
 
-                android:id="@+id/img_profile"
-
                 android:scaleType="centerInside"
 
                 android:src="@drawable/av" />
 
 
-
         </RelativeLayout>
-
 
 
         <TextView
@@ -86,9 +82,6 @@
             android:textSize="32sp" />
 
 
-
-
-
         <TextView
 
             android:id="@+id/tv_profession"
@@ -112,11 +105,7 @@
             android:textSize="14sp" />
 
 
-
-
-
     </RelativeLayout>
-
 
 
     <LinearLayout
@@ -130,7 +119,6 @@
         android:layout_below="@id/rellay1"
 
         android:orientation="horizontal">
-
 
 
         <RelativeLayout
@@ -147,10 +135,9 @@
 
             android:gravity="center"
 
-            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
 
-            android:paddingTop="5dp">
-
+            android:paddingBottom="5dp">
 
 
             <LinearLayout
@@ -164,8 +151,9 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
+
+                    android:id="@+id/tv_rating_num"
 
                     android:layout_width="wrap_content"
 
@@ -175,12 +163,9 @@
 
                     android:text="4/5"
 
-                    android:id="@+id/tv_rating_num"
-
                     android:textColor="@color/white"
 
                     android:textSize="25sp" />
-
 
 
                 <TextView
@@ -200,13 +185,10 @@
                     android:textSize="13sp" />
 
 
-
             </LinearLayout>
 
 
-
         </RelativeLayout>
-
 
 
         <RelativeLayout
@@ -223,10 +205,9 @@
 
             android:gravity="center"
 
-            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
 
-            android:paddingTop="5dp">
-
+            android:paddingBottom="5dp">
 
 
             <LinearLayout
@@ -240,8 +221,9 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
+
+                    android:id="@+id/tv_experience_num"
 
                     android:layout_width="wrap_content"
 
@@ -251,12 +233,9 @@
 
                     android:text="15"
 
-                    android:id="@+id/tv_experience_num"
-
                     android:textColor="@color/white"
 
                     android:textSize="25sp" />
-
 
 
                 <TextView
@@ -276,19 +255,13 @@
                     android:textSize="13sp" />
 
 
-
             </LinearLayout>
-
 
 
         </RelativeLayout>
 
 
-
     </LinearLayout>
-
-
-
 
 
     <RelativeLayout
@@ -298,7 +271,6 @@
         android:layout_height="match_parent"
 
         android:layout_below="@+id/linlay1">
-
 
 
         <LinearLayout
@@ -311,12 +283,11 @@
 
             android:layout_marginLeft="30dp"
 
-            android:layout_marginRight="30dp"
-
             android:layout_marginTop="20dp"
 
-            android:orientation="vertical">
+            android:layout_marginRight="30dp"
 
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -326,7 +297,6 @@
                 android:layout_height="wrap_content"
 
                 android:orientation="vertical">
-
 
 
                 <TextView
@@ -342,8 +312,9 @@
                     android:textSize="13sp" />
 
 
-
                 <TextView
+
+                    android:id="@+id/tv_email_id"
 
                     android:layout_width="wrap_content"
 
@@ -353,10 +324,7 @@
 
                     android:textColor="#000000"
 
-                    android:id="@+id/tv_email_id"
-
                     android:textSize="18sp" />
-
 
 
                 <View
@@ -370,9 +338,7 @@
                     android:background="@color/grey" />
 
 
-
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -386,13 +352,13 @@
                 android:orientation="vertical">
 
 
-
                 <TextView
 
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
 
+                    android:autoLink="phone"
                     android:text="Phone Number"
 
                     android:textColor="@color/headings"
@@ -400,21 +366,20 @@
                     android:textSize="13sp" />
 
 
-
                 <TextView
+
+                    android:id="@+id/tv_phone"
 
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
 
                     android:fontFamily="sans-serif-light"
+                    android:onClick="showconfirm"
 
                     android:textColor="#000000"
 
-                    android:id="@+id/tv_phone"
-
                     android:textSize="18sp" />
-
 
 
                 <View
@@ -428,9 +393,7 @@
                     android:background="@color/grey" />
 
 
-
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -442,7 +405,6 @@
                 android:layout_marginTop="15dp"
 
                 android:orientation="vertical">
-
 
 
                 <TextView
@@ -458,8 +420,9 @@
                     android:textSize="13sp" />
 
 
-
                 <TextView
+
+                    android:id="@+id/tv_alter_phone"
 
                     android:layout_width="wrap_content"
 
@@ -467,12 +430,9 @@
 
                     android:fontFamily="sans-serif-light"
 
-                    android:id="@+id/tv_alter_phone"
-
                     android:textColor="#000000"
 
                     android:textSize="18sp" />
-
 
 
                 <View
@@ -484,21 +444,37 @@
                     android:layout_marginTop="15dp"
 
                     android:background="@color/grey" />
-
+                <LinearLayout
+                    android:id="@+id/confirmandfinish"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="showdone"
+                        android:text="Confirm"/>
+                    <Button
+                        android:id="@+id/finish"
+                        android:layout_width="wrap_content"
+                        android:clickable="false"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="review"
+                        android:text="Work Done"/>
+                </LinearLayout>
 
 
             </LinearLayout>
 
 
-
-
-
         </LinearLayout>
 
 
-
     </RelativeLayout>
-
 
 
 </RelativeLayout>

@@ -181,11 +181,7 @@
                 android:paddingLeft="45dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:paddingLeft="20dp"
-                    android:src="@drawable/benifits"/>
+
                 <TextView
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
@@ -194,6 +190,12 @@
                     android:text="Benifits"
                     android:textSize="15sp"
                     android:paddingLeft="20dp"/>
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:paddingLeft="20dp"
+                    android:src="@drawable/benifits" />
             </LinearLayout>
             <LinearLayout
                 android:paddingLeft="45dp"
